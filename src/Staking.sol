@@ -171,7 +171,8 @@ contract Staking is ReentrancyGuard {
         // Check staking limits based on the locking period in days
         if (lockingPeriodInDays >= 30 && lockingPeriodInDays <= 60) {
             // No limit for 30-60 days staking
-        } else if (lockingPeriodInDays == 90) {
+        }
+        else if (lockingPeriodInDays == 90) {
             require(tokenAmount_ <= 10_000, "Exceeds 90 days staking limit of 10,000 tokens");
         } else if (lockingPeriodInDays == 180 || lockingPeriodInDays == 360) {
             require(tokenAmount_ <= 5000, "Exceeds 180/360 days staking limit of 5,000 tokens");

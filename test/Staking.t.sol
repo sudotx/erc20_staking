@@ -4,7 +4,7 @@ pragma solidity 0.8.20;
 import {AggregatorV3Interface} from "@chainlink/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {Test, console} from "forge-std/Test.sol";
 import {DummyERC20} from "./mocks/DummyERC20.sol";
-import {SeeseaToken} from "../src/Token.sol";
+import {MilkToken} from "../src/Token.sol";
 import {Staking} from "src/Staking.sol";
 
 /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
@@ -32,6 +32,7 @@ contract StakingTest is Test {
 
     DummyERC20 public rewardToken;
     DummyERC20 public poolToken;
+    MilkToken public milkToken;
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                           ACTORS                           */
@@ -251,7 +252,9 @@ contract MockUSDTBNBAggregator is AggregatorV3Interface {
         return 1;
     }
 
-    function getRoundData(uint80 _roundId)
+    function getRoundData(
+        uint80 _roundId
+    )
         external
         view
         override
@@ -289,7 +292,9 @@ contract MockBNBUSDTAggregator is AggregatorV3Interface {
         return 1;
     }
 
-    function getRoundData(uint80 _roundId)
+    function getRoundData(
+        uint80 _roundId
+    )
         external
         view
         override
@@ -309,7 +314,7 @@ contract MockBNBUSDTAggregator is AggregatorV3Interface {
 }
 
 contract TokenTest is Test {
-    SeeseaToken poolToken;
+    MilkToken poolToken;
     MockBNBUSDTAggregator bnbusdtfeed;
     MockUSDTBNBAggregator usdtbnbfeed;
 
@@ -350,7 +355,7 @@ contract TokenTest is Test {
         vm.deal(owner, 100 ether);
 
         vm.startPrank(owner);
-        poolToken = new SeeseaToken(owner, address(bnbusdtfeed), address(usdtbnbfeed), address(usdc), address(usdt));
+        poolToken = new MilkToken(owner, address(bnbusdtfeed), address(usdtbnbfeed), address(usdc), address(usdt));
 
         vm.label(address(poolToken), "POOL TOKEN");
 
