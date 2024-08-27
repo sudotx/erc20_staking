@@ -7,8 +7,6 @@ import "@openzeppelin/utils/ReentrancyGuard.sol";
 
 import {console} from "forge-std/Test.sol";
 
-/// @title staking contract
-/// @author sisi-hacks
 /// @dev that staking contract is fully dependent on the provided reward token and the underlying LP token.
 
 contract Staking is ReentrancyGuard {

@@ -264,7 +264,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
 
-contract SeeseaToken is ERC20, ERC20Burnable, ERC20Pausable, Ownable {
+contract MilkToken is ERC20, ERC20Burnable, ERC20Pausable, Ownable {
     IUniswapV2Router02 public immutable uniswapV2Router;
     address public immutable uniswapV2Pair;
     uint256 immutable usdEntryFee;
@@ -289,7 +289,7 @@ contract SeeseaToken is ERC20, ERC20Burnable, ERC20Pausable, Ownable {
         address _priceFeedAddress2,
         address _usdc,
         address _usdt
-    ) ERC20("Seesea Token", "SSAI") Ownable(initialOwner) {
+    ) ERC20("Milk Token", "MILK") Ownable(initialOwner) {
         _mint(msg.sender, 100_000_000 * 10 ** decimals());
 
         IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);
